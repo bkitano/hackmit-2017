@@ -2,12 +2,12 @@
 var assert = require("assert");
 var express = require('express');
 var exphbs  = require('express-handlebars');
-var MongoClient = require("mongodb").MongoClient;
-
+var mongoose = require('mongoose');
 var passport = require('passport');
-var config = require('./oauth.js');
-var FacebookStrategy = require('passport-facebook').Strategy;
-
+var fbAuth = require('./authentication.js');
+var User = require('./user.js');
+var cookieParser = require('cookie-parser')
+var bodyParser = require('body-parser')
 
 // MIDDLEWARE
 
@@ -23,19 +23,68 @@ app.use('/assets', express.static(__dirname + '/assets'));
 var mongourl = "mongodb://matteo:1234@ds139124.mlab.com:39124/hackmit-2017"
 
 // check to make sure the database is connected at the start
-MongoClient.connect(mongourl, function(err, db) {
-  assert.equal(null, err);
-  console.log("Connected successfully to database");
-  db.close();
+mongoose.connect(mongourl, function(error) {
+    assert.equal(null,error);
+    console.log("Connected successfully to database");
+    mongoose.connection.close();
 });
+
+// passport
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(cookieParser());
+app.use(bodyParser());
+
+passport.serializeUser(function(user, done) {
+  console.log('serializeUser: ' + user._id);
+  done(null, user._id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user){
+    console.log(user);
+      if(!err) done(null, user);
+      else done(err, null);
+    });
+});
+
+// passport routes
+
+app.get('/account', ensureAuthenticated, function(req, res){
+  User.findById(req.session.passport.user, function(err, user) {
+    if(err) {
+      console.log(err);  // handle errors
+    } else {
+      res.render('account', { user: user});
+    }
+  });
+});
+
+app.get('/auth/facebook',
+  passport.authenticate('facebook'),
+  function(req, res){});
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/' }),
+  function(req, res) {
+    res.redirect('/account');
+});
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/');
+}
 
 // ROUTES
 app.get('/', function (req, res) {
-  res.send('Hello World!')
-})
-
+  res.render('login');
+});
 
 // FOOTERS
 app.listen(8080, function () {
-  console.log('Example app listening on port 8080!')
-})
+  console.log('Example app listening on port 8080!');
+});
