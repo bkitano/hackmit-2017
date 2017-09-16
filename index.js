@@ -42,12 +42,10 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user){
-    console.log(user);
-      if(!err) done(null, user);
-      else done(err, null);
-    });
-});
+   User.findById(id, function(err, user) {
+     done(err, user);
+   });
+})
 
 // passport routes
 
@@ -61,14 +59,25 @@ app.get('/account', ensureAuthenticated, function(req, res){
   });
 });
 
+
+app.get('/account', function(req, res) {
+  res.render('account');
+})
+
+app.get('/react1', function(req, res) {
+  res.render('react1');
+})
+
 app.get('/auth/facebook',
   passport.authenticate('facebook'),
   function(req, res){});
+  
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/' }),
   function(req, res) {
     res.redirect('/account');
-});
+  });
+
 app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
@@ -81,10 +90,12 @@ function ensureAuthenticated(req, res, next) {
 
 // ROUTES
 app.get('/', function (req, res) {
+  console.log("heading to login page...");
   res.render('login');
 });
 
+
 // FOOTERS
-app.listen(8080, function () {
+app.listen(process.env.PORT || 8080, function () {
   console.log('Example app listening on port 8080!');
 });
