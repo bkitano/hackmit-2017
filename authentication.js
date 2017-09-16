@@ -14,6 +14,7 @@ module.exports = passport.use(new FacebookStrategy({
         console.log(err);  // handle errors!
       }
       if (!err && user !== null) {
+        console.log(user);
         done(null, user);
       } else {
         user = new User({
@@ -31,5 +32,6 @@ module.exports = passport.use(new FacebookStrategy({
         });
       }
     });
+    // done(null,null);
   }
 ));

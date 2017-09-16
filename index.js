@@ -6,8 +6,9 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var fbAuth = require('./authentication.js');
 var User = require('./user.js');
-var cookieParser = require('cookie-parser')
-var bodyParser = require('body-parser')
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var session = require('express-session');
 
 // MIDDLEWARE
 
@@ -26,11 +27,12 @@ var mongourl = "mongodb://matteo:1234@ds139124.mlab.com:39124/hackmit-2017"
 mongoose.connect(mongourl, function(error) {
     assert.equal(null,error);
     console.log("Connected successfully to database");
-    mongoose.connection.close();
+    // mongoose.connection.close();
 });
 
 // passport
 
+app.use(session({ secret: 'my_precious' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser());
@@ -49,6 +51,17 @@ passport.deserializeUser(function(id, done) {
 
 // passport routes
 
+// app.get('/account', ensureAuthenticated, function(req, res){
+//   User.findById(req.session.passport.user, function(err, user) {
+//     if(err) {
+//       console.log(err);  // handle errors
+//     } else {
+//       res.render('account', { user: user});
+//     }
+//   });
+// });
+
+
 app.get('/account', ensureAuthenticated, function(req, res){
   User.findById(req.session.passport.user, function(err, user) {
     if(err) {
@@ -58,20 +71,13 @@ app.get('/account', ensureAuthenticated, function(req, res){
     }
   });
 });
-
-
-app.get('/account', function(req, res) {
-  res.render('account');
-})
-
 app.get('/react1', function(req, res) {
   res.render('react1');
 })
 
 app.get('/auth/facebook',
-  passport.authenticate('facebook'),
+  passport.authenticate('facebook',{authType: 'reauthenticate'}),
   function(req, res){});
-  
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/' }),
   function(req, res) {
