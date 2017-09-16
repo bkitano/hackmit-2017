@@ -10,10 +10,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "assert": "^1.4.1",
     "express": "^4.15.3",
     "express-handlebars": "^3.0.0",
+    "mongodb": "^2.2.31",
     "mongojs": "^2.4.0",
     "nodemon": "^1.11.0",
+    "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   }

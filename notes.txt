@@ -1,0 +1,7 @@
+
+the facebook login integration.
+
+https://www.youtube.com/watch?v=x_gLILTRD_k&t=3s
+https://developers.facebook.com/docs/facebook-login/web
+
+
