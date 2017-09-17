@@ -31,36 +31,21 @@
     
   <nav class="navbar navbar-default" style = "width: 100%; float: right;">
     <div class = "container-fluid">
-      <ul>
-        <li class = "naa">
           <a href='/' style = "margin-top: 1rem; float:left;">Papyrus</a>
-        </li>
-        <li class = "naa">
           <form class="navbar-form navbar-left" action="/search/submit" method='post'>
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Search" style = "margin-top: .6rem;">
-              <button type="submit" class="btn btn-default" style = "margin-right: 0rem;">Submit</button>
+              <button type="submit" class="btn btn-default" style = "margin-bottom: 0rem; margin-right: 0rem;">Submit</button>
             </div>
           </form>
-        </li>
-    <li class = "naa">
     {{#if name}}
-    
       <a href='/logout'>
         <button class="btn btn-primary">Logout</button>
       </a>
-    </li>
-    <li class = "naa">
-      <a href='/add'>
-        <button class="btn btn-primary">Add</button>
-      </a>
-    </li>
     {{else}}
-    <li class = "naa">
       <a href='/login'>
         <button class='btn btn-primary' style = "margin-left: 0rem;">Login</button>
       </a>
-    </li>
     {{/if}}
   </nav>
 
