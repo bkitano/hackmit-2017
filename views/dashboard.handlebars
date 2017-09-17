@@ -1,0 +1,21 @@
+<h1 class="jumbotron">Welcome, {{name}}.</h1>
+<div>
+    {{#each apps}}
+        <div class='card' style="width: 20rem;" id={{this.applicationID}}>
+            <div class='card-title company'>
+                <h4>{{this.internship.company}}</h4>
+            </div>
+            <div class='card-text position'>
+                <p>{{this.internship.position}}</p>
+            </div>
+            <div class='card-text deadline'>
+                <p>{{this.internship.deadline}}</p>
+            </div>
+            <div class='card-text company'>
+                <a href={{this.internship.url}}>
+                    <button class="btn btn-primary">Apply</button>
+                </a>
+            </div>
+        </div>
+    {{/each}}
+</div>

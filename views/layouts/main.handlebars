@@ -31,14 +31,15 @@
      
     <nav class="navbar navbar-inverse navbar-toggleable-md bg-inverse">
       <a class="navbar-brand" href="/">Papyrus</a>
-      {{#if user.name }}
-      <a href="/account" class="navbar-text">Hi, {{user.name}}</a>
+      {{#if name }}
+      <a href="/" class="navbar-text">Hi, {{name}}</a>
       <a href="/add">
         <button class="btn btn-primary">Add</button>
       </a>
+      <a href='/logout' class="btn btn-primary">Logout</a>
       {{ else }}
       <a href="/login">
-        <button class="btn navbar-btn">Sign In</button>
+        <button class="btn navbar-btn">Login</button>
       </a>
       {{/if}}
     </nav>
