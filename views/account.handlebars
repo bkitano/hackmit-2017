@@ -1,1 +1,17 @@
 <p>Hi {{user.name}}, this is your account! You're logged in</p>
+
+
+<div id='list'>
+    <div>
+        <p>Your Jobs</p>
+        {{#each job}}
+        <div class='card' style="width: 20rem;">
+            <div class='job card-block'>
+                <h4 class='company card-title'>Company: {{this.company}}</p>
+                <p class='position card-text'>Position: {{this.position}}</p>
+                <p class='deadline card-text'>Deadline: {{this.deadline}}</p>
+                <a href={{this.url}} class='url btn btn-primary'>Apply here</a>
+            </div>
+        </div>
+    {{/each}}
+</div>

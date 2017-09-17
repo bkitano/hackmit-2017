@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "assert": "^1.4.1",
+    "babel": "^6.23.0",
     "body-parser": "^1.18.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
@@ -19,6 +20,7 @@
     "material-ui": "^0.19.1",
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.11",
+    "mongoose-autopopulate": "^0.6.0",
     "nodemon": "^1.11.0",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",

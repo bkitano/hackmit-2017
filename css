@@ -1,0 +1,102 @@
+body {
+	font-family: Georgia, Helvetica, sans-serif;
+  	/*font-size: 2rem;*/
+  	line-height: 1rem;
+  	background-color: darkgray;
+  	margin: 0rem;
+
+}
+
+.locationBar {
+  position: fixed;
+  top:0;
+  width: 100%;
+}
+
+h1 {
+	font-family: Georgia, serif;
+  	font-size: 3rem;
+  	line-height: 1rem;
+  	font-weight: normal;
+  	text-transform: uppercase;
+  	text-align: center;
+  	padding-top: 4rem;
+  	padding-bottom: 1rem;
+    margin-top: 6rem;
+}
+
+h2 {
+	margin-bottom: 0rem;
+	padding-bottom: 0rem;
+}
+
+.main {
+	width: 60%;
+	height: 7rem;
+	margin-left: 20%;
+	margin-right: 20%;
+	border: solid 1px lightgray;
+	background-color: white;
+	border-radius: 1rem;
+	margin-bottom: 2rem;
+}
+
+.main1 {
+	float: left;
+	margin: 0rem;
+	margin-left: 2rem;
+	padding: 0rem;
+	width:44%;
+}
+
+.main2 {
+	float: left;
+	margin: 0rem;
+	padding: 0rem;
+	width:50%;
+}
+
+ul {
+	font-family: Georgia;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+}
+
+li {
+    float: left;
+    /*the white border between locations*/
+    border-right: 1px solid white;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 1.2rem .9rem 1.2rem;
+    text-decoration: none;
+}
+
+ul.loc {
+	border-bottom: 1px solid lightgray;
+}
+
+.locationBar ul.loc li.right {
+	float: right;
+	padding: .8rem .8rem;
+}
+
+.locationBar ul.loc li.home {
+  float: left;
+  padding: 1.2rem .9rem 1.2rem;
+}
+
+ul.loc li.over {
+	text-transform: uppercase;
+	color: black;
+}
+
+/* Change the link color to #111 (black) on hover */
+ul li.over:hover {
+    background-color: black;
+    color: white;
+}

@@ -1,0 +1,25 @@
+<p>This is the home page</p>
+<a href="/logout">Logout</a>
+
+{{#each jobs}}
+<div class="card">
+  <div class="card-block">
+    <h4 class="card-title">{{this.company}}</h4>
+    <h6 class="card-subtitle mb-2 text-muted">{{this.position}}</h6>
+    <p class="card-text">Deadline: {{this.deadline}}</p>
+    <a onclick="saveJob('{{this._id}}')" class="btn btn-primary">Save</a>
+    <a href="{{this.url}}" class="btn btn-primary">Link</a>
+  </div>
+</div>
+{{/each}}
+
+<script type="text/javascript">
+    function saveJob(jobId) {
+        console.log("ajax");
+        $.post("/save",{
+            object_id: jobId
+        },function (data) {
+            console.log('success');
+        });
+    }
+</script>

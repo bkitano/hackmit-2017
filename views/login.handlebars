@@ -1,18 +1,15 @@
-<div class="login-page">
-  <div class="form">
-    <form class="register-form">
-      <input type="text" placeholder="name"/>
-      <input type="password" placeholder="password"/>
-      <input type="text" placeholder="email address"/>
-      <button>create</button>
-      <p class="message">Already registered? <a href="#">Sign In</a></p>
-    </form>
-    <form class="login-form">
-      <input type="text" placeholder="username"/>
-      <input type="password" placeholder="password"/>
-      <button>login</button>
-      <a href="/auth/facebook">Login via Facebook</a>
-      <p class="message">Not registered? <a href="#">Create an account</a></p>
-    </form>
+<div class="col-md-4"></div>
+<div class="col-md-4 text-center">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Hi there!</h3>
+    </div>
+    <div class="panel-body">
+      You need to be logged in to access this page
+      <form method="GET" action="/auth/facebook">
+        <button type="submit" class="btn btn-primary btn-lg btn-space">Login with Facebook</button>
+      </form>
+    </div>
   </div>
 </div>
+<div class="col-md-4"></div>
